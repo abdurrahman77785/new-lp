@@ -265,5 +265,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 ttq.track('CompleteRegistration');
             }
         });
-    });
+    });    
 });

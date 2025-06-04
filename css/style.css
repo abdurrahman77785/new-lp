@@ -636,11 +636,11 @@ nav {
 
 .cta-button.big {
     padding: 15px 30px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .cta-button.big i {
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .cta-note {
@@ -849,4 +849,50 @@ nav {
     .pricing-container {
         grid-template-columns: 1fr;
     }
+}
+
+#wa-popup {
+  position: fixed;
+  bottom: 20px;
+  right : 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+#wa-popup a {
+  text-decoration: none;
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wa-icon {
+  background-color: #25D366;
+  padding: 12px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.wa-icon:hover {
+  transform: scale(1.1);
+}
+
+.wa-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+#wa-popup span {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #333;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }

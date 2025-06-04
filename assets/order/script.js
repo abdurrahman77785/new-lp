@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeModalBtn = document.getElementById('close-success-modal');
     const packagePrices = {
     'basic': 'Rp 350.000',
-    'standard': 'Rp 750.000', 
-    'premium': 'Rp 1.300.000'
+    'standard': 'Rp 950.000', 
+    'premium': 'Rp 1.500.000'
 };
     
     orderForm.addEventListener('submit', function(e) {
@@ -88,7 +88,56 @@ document.addEventListener('DOMContentLoaded', function() {
             el.textContent = '';
             el.style.display = 'none';
         });
+    }function validateCoupon() {
+    const couponInput = document.getElementById('coupon').value.trim();
+    const discountDisplay = document.getElementById('discount-value');
+    const couponSuccess = document.getElementById('coupon-success');
+    
+    if (!couponInput) return 0; // Jika kupon kosong
+    
+    if (couponList[couponInput]) {
+        const discount = couponList[couponInput];
+        discountDisplay.textContent = `${discount}%`;
+        couponSuccess.style.display = 'block';
+        return discount;
+    } else {
+        showError('coupon-error', 'Kode kupon tidak valid');
+        return 0;
     }
+}
+
+function sendToWhatsApp() {
+    const discount = validateCoupon();
+    
+    const formData = {
+        // ... data form lainnya ...
+        coupon: document.getElementById('coupon').value.trim(),
+        discount: discount
+    };
+
+    // Hitung harga setelah diskon
+    const packagePrices = {
+        'basic': 350000,
+        'standard': 750000,
+        'premium': 1300000
+    };
+    
+    const originalPrice = packagePrices[formData.package];
+    const discountedPrice = originalPrice * (1 - discount / 100);
+    
+    // Format pesan WhatsApp (tambahkan info diskon)
+    const message = `Halo, saya ingin memesan website:
+    
+Nama: ${formData.name}
+Paket: ${formData.package} 
+${discount > 0 ? `Diskon: ${discount}% (Harga awal: Rp ${originalPrice.toLocaleString('id-ID')})` : ''}
+Harga Final: Rp ${discountedPrice.toLocaleString('id-ID')}
+Domain: ${formData.domain}
+
+${formData.coupon ? `Kupon: ${formData.coupon}` : ''}`;
+
+    // ... kode pengiriman WhatsApp ...
+}
     function sendToWhatsApp() {
     const formData = {
         name: document.getElementById('name').value.trim(),

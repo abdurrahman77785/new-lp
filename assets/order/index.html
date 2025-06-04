@@ -39,8 +39,8 @@
                 <select id="website-type" name="website-type" required>
                     <option value="">-- Pilih Jenis Website --</option>
                     <option value="company-profile">Company Profile</option>
-                    <option value="ecommerce">E-Commerce</option>
-                    <option value="blog">Blog Pribadi</option>
+                    <option value="ecommerce">Toko Online</option>
+                    <option value="blog">Landing page</option>
                     <option value="portfolio">Portfolio</option>
                     <option value="custom">Custom Website</option>
                 </select>
@@ -51,9 +51,9 @@
                 <label for="package">Paket*</label>
                 <select id="package" name="package" required>
                     <option value="">-- Pilih Paket --</option>
-                    <option value="basic">Basic - Rp 5.000.000</option>
-                    <option value="standard">Standard - Rp 10.000.000</option>
-                    <option value="premium">Premium - Rp 20.000.000</option>
+                    <option value="basic">Basic - Rp 650.000</option>
+                    <option value="standard">Standard - Rp 950.000</option>
+                    <option value="premium">Premium - Rp 1.500.000</option>
                 </select>
                 <div class="error-message" id="package-error"></div>
             </div>
@@ -68,7 +68,14 @@
                 <label for="notes">Catatan Tambahan</label>
                 <textarea id="notes" name="notes" rows="4"></textarea>
             </div>
-            
+            <div class="form-group">
+                <label for="coupon">Kode Kupon (Jika Ada)</label>
+                <input type="text" id="coupon" name="coupon" placeholder="Masukkan kode diskon">
+                <div class="error-message" id="coupon-error"></div>
+                <div id="coupon-success" class="coupon-success" style="display: none;">
+                    Kupon diterima! Diskon: <span id="discount-value">0</span>
+                </div>
+</div>
             <button type="submit" class="btn-submit">
                 <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
             </button>

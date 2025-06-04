@@ -231,3 +231,13 @@ body {
 }
 
 /* ... (modal styles tetap sama) ... */
+
+.coupon-success {
+    color: var(--primary-color);
+    font-size: 14px;
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+    display: none;
+}
