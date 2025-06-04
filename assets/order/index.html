@@ -3,184 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemesanan Jasa Pembuatan Website | RahmanCCTV</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Pemesanan Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <!-- Midtrans Snap JS -->
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="Mid-client-ErNYQqYJvrDZQ_JA"></script>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Pemesanan Jasa Pembuatan Website</h1>
+        <div class="header">
+            <h1><i class="fas fa-code"></i> Pemesanan Website Profesional</h1>
+            <p>Isi form berikut dan kami akan menghubungi via WhatsApp</p>
+        </div>
         
-        <form id="orderForm" class="order-form">
-            <div class="form-section">
-                <h2><i class="fas fa-user"></i> Informasi Pemesan</h2>
-                <div class="form-group">
-                    <label for="nama">Nama Lengkap</label>
-                    <input type="text" id="nama" name="nama" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="telepon">Nomor Telepon/WhatsApp</label>
-                    <input type="tel" id="telepon" name="telepon" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <textarea id="alamat" name="alamat" rows="3" required></textarea>
-                </div>
+        <form id="order-form" class="order-form">
+            <div class="form-group">
+                <label for="name">Nama Lengkap*</label>
+                <input type="text" id="name" name="name" required>
+                <div class="error-message" id="name-error"></div>
             </div>
             
-            <div class="form-section">
-                <h2><i class="fas fa-laptop-code"></i> Detail Website</h2>
-                <div class="form-group">
-                    <label for="jenis_website">Jenis Website</label>
-                    <select id="jenis_website" name="jenis_website" required>
-                        <option value="" disabled selected>Pilih Jenis Website</option>
-                        <option value="company_profile">Company Profile</option>
-                        <option value="toko_online">Toko Online/E-commerce</option>
-                        <option value="blog">Blog Pribadi</option>
-                        <option value="landing_page">Landing Page</option>
-                        <option value="custom">Custom (Desain Khusus)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="kategori">Kategori Bisnis</label>
-                    <input type="text" id="kategori" name="kategori" placeholder="Contoh: Toko Elektronik, Restoran, dll">
-                </div>
-                
-                <div class="form-group">
-                    <label for="fitur_tambahan">Fitur Tambahan</label>
-                    <div class="checkbox-group">
-                        <label>
-                            <input type="checkbox" name="fitur_tambahan[]" value="responsive_design"> Desain Responsif (Mobile Friendly)
-                        </label>
-                        <label>
-                            <input type="checkbox" name="fitur_tambahan[]" value="admin_panel"> Admin Panel
-                        </label>
-                        <label>
-                            <input type="checkbox" name="fitur_tambahan[]" value="multi_bahasa"> Multi Bahasa
-                        </label>
-                        <label>
-                            <input type="checkbox" name="fitur_tambahan[]" value="payment_gateway"> Payment Gateway
-                        </label>
-                        <label>
-                            <input type="checkbox" name="fitur_tambahan[]" value="seo_ready"> SEO Ready
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="catatan">Catatan Khusus</label>
-                    <textarea id="catatan" name="catatan" rows="3" placeholder="Deskripsikan kebutuhan website Anda secara detail"></textarea>
-                </div>
+            <div class="form-group">
+                <label for="email">Email*</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="email-error"></div>
             </div>
             
-            <div class="form-section">
-                <h2><i class="fas fa-box-open"></i> Paket Website</h2>
-                <div class="package-options">
-                    <div class="package-card">
-                        <input type="radio" id="paket_basic" name="paket" value="basic" checked>
-                        <label for="paket_basic">
-                            <h3>Basic</h3>
-                            <ul>
-                                <li>5 Halaman Website</li>
-                                <li>Template Standar</li>
-                                <li>Hosting 1 Tahun</li>
-                                <li>Domain .com/.net</li>
-                                <li>Email Bisnis</li>
-                            </ul>
-                            <div class="price">Rp 2.500.000</div>
-                        </label>
-                    </div>
-                    
-                    <div class="package-card">
-                        <input type="radio" id="paket_standard" name="paket" value="standard">
-                        <label for="paket_standard">
-                            <h3>Standard</h3>
-                            <ul>
-                                <li>10 Halaman Website</li>
-                                <li>Template Premium</li>
-                                <li>Hosting 1 Tahun</li>
-                                <li>Domain .com/.net</li>
-                                <li>Email Bisnis</li>
-                                <li>SEO Dasar</li>
-                            </ul>
-                            <div class="price">Rp 5.000.000</div>
-                        </label>
-                    </div>
-                    
-                    <div class="package-card">
-                        <input type="radio" id="paket_premium" name="paket" value="premium">
-                        <label for="paket_premium">
-                            <h3>Premium</h3>
-                            <ul>
-                                <li>Halaman Unlimited</li>
-                                <li>Desain Custom</li>
-                                <li>Hosting 2 Tahun</li>
-                                <li>Domain .com/.net</li>
-                                <li>Email Bisnis</li>
-                                <li>SEO Lengkap</li>
-                                <li>Integrasi Payment</li>
-                            </ul>
-                            <div class="price">Rp 10.000.000</div>
-                        </label>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="phone">Nomor WhatsApp*</label>
+                <input type="tel" id="phone" name="phone" required>
+                <div class="error-message" id="phone-error"></div>
             </div>
             
-            <div class="form-section">
-                <h2><i class="fas fa-credit-card"></i> Metode Pembayaran</h2>
-                <div class="form-group">
-                    <label>Pilih Metode Pembayaran:</label>
-                    <div class="payment-options">
-                        <label>
-                            <input type="radio" name="payment_method" value="transfer" checked>
-                            <i class="fas fa-university"></i> Transfer Bank
-                        </label>
-                        <label>
-                            <input type="radio" name="payment_method" value="credit_card">
-                            <i class="fas fa-credit-card"></i> Kartu Kredit
-                        </label>
-                        <label>
-                            <input type="radio" name="payment_method" value="gopay">
-                            <i class="fas fa-mobile-alt"></i> GoPay
-                        </label>
-                        <label>
-                            <input type="radio" name="payment_method" value="shopeepay">
-                            <i class="fas fa-store"></i> ShopeePay
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="dp_amount">Pembayaran Awal (DP)</label>
-                    <select id="dp_amount" name="dp_amount">
-                        <option value="50">50% (Standard)</option>
-                        <option value="30">30%</option>
-                        <option value="100">Lunas (100%)</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="website-type">Jenis Website*</label>
+                <select id="website-type" name="website-type" required>
+                    <option value="">-- Pilih Jenis Website --</option>
+                    <option value="company-profile">Company Profile</option>
+                    <option value="ecommerce">E-Commerce</option>
+                    <option value="blog">Blog Pribadi</option>
+                    <option value="portfolio">Portfolio</option>
+                    <option value="custom">Custom Website</option>
+                </select>
+                <div class="error-message" id="website-type-error"></div>
             </div>
             
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-shopping-cart"></i> Pesan Sekarang
-                </button>
-                <button type="reset" class="btn btn-secondary">
-                    <i class="fas fa-redo"></i> Reset Form
-                </button>
+            <div class="form-group">
+                <label for="package">Paket*</label>
+                <select id="package" name="package" required>
+                    <option value="">-- Pilih Paket --</option>
+                    <option value="basic">Basic - Rp 5.000.000</option>
+                    <option value="standard">Standard - Rp 10.000.000</option>
+                    <option value="premium">Premium - Rp 20.000.000</option>
+                </select>
+                <div class="error-message" id="package-error"></div>
             </div>
+            
+            <div class="form-group">
+                <label for="domain">Domain yang diinginkan (contoh: bisnisku.com)*</label>
+                <input type="text" id="domain" name="domain" required>
+                <div class="error-message" id="domain-error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="notes">Catatan Tambahan</label>
+                <textarea id="notes" name="notes" rows="4"></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit">
+                <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
+            </button>
+            <input type="hidden" id="admin-wa" value="6283824225539">
         </form>
     </div>
-
+    
+    <!-- Modal Sukses -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Permintaan Terkirim!</h2>
+            <p>Kami akan segera menghubungi Anda via WhatsApp.</p>
+            <button id="close-success-modal" class="btn-modal">Tutup</button>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>

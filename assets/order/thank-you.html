@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terima Kasih - Pemesanan Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="thank-you-container">
+            <div class="thank-you-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Terima Kasih!</h1>
+            <p>Pemesanan website Anda telah berhasil diproses.</p>
+            
+            <div class="order-details">
+                <h2>Detail Pemesanan</h2>
+                <div id="order-details-content">
+                    <!-- Detail pesanan akan diisi oleh JavaScript -->
+                </div>
+            </div>
+            
+            <p>Kami akan menghubungi Anda dalam 1x24 jam untuk konfirmasi lebih lanjut.</p>
+            <p>Jika Anda memiliki pertanyaan, silakan hubungi kami di <a href="mailto:support@example.com">support@example.com</a></p>
+            
+            <a href="/" class="btn-home">Kembali ke Beranda</a>
+        </div>
+    </div>
+    
+    <script>
+        // Ambil parameter dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('order_id');
+        const status = urlParams.get('status');
+        
+        // Tampilkan detail pesanan
+        const orderDetails = document.getElementById('order-details-content');
+        
+        if (orderId) {
+            orderDetails.innerHTML += `<p><strong>ID Pesanan:</strong> ${orderId}</p>`;
+        }
+        
+        if (status === 'pending') {
+            document.querySelector('.thank-you-icon i').className = 'fas fa-clock';
+            document.querySelector('.thank-you-icon').style.color = '#FFA000';
+            document.querySelector('h1').textContent = 'Pembayaran Anda Sedang Diproses';
+            document.querySelector('p').textContent = 'Pemesanan website Anda telah diterima, tetapi pembayaran masih pending.';
+        }
+        
+        // Anda bisa menambahkan lebih banyak detail dari localStorage atau sessionStorage
+        const savedOrder = JSON.parse(localStorage.getItem('lastOrder'));
+        if (savedOrder) {
+            orderDetails.innerHTML += `
+                <p><strong>Nama:</strong> ${savedOrder.name}</p>
+                <p><strong>Paket:</strong> ${savedOrder.package}</p>
+                <p><strong>Jenis Website:</strong> ${savedOrder.website_type}</p>
+                <p><strong>Total:</strong> ${new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(savedOrder.amount)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

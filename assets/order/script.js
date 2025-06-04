@@ -1,127 +1,146 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const orderForm = document.getElementById('orderForm');
+    const orderForm = document.getElementById('order-form');
+    const successModal = document.getElementById('success-modal');
+    const closeModalBtn = document.getElementById('close-success-modal');
+    const packagePrices = {
+    'basic': 'Rp 350.000',
+    'standard': 'Rp 750.000', 
+    'premium': 'Rp 1.300.000'
+};
     
     orderForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Collect form data
-        const formData = {
-            nama: document.getElementById('nama').value,
-            email: document.getElementById('email').value,
-            telepon: document.getElementById('telepon').value,
-            alamat: document.getElementById('alamat').value,
-            jenis_website: document.getElementById('jenis_website').value,
-            kategori: document.getElementById('kategori').value,
-            fitur_tambahan: Array.from(document.querySelectorAll('input[name="fitur_tambahan[]"]:checked')).map(el => el.value),
-            catatan: document.getElementById('catatan').value,
-            paket: document.querySelector('input[name="paket"]:checked').value,
-            payment_method: document.querySelector('input[name="payment_method"]:checked').value,
-            dp_amount: document.getElementById('dp_amount').value
-        };
+        // Reset error messages
+        clearErrors();
         
-        // Calculate total amount based on package
-        let packagePrice;
-        switch(formData.paket) {
-            case 'basic':
-                packagePrice = 2500000;
-                break;
-            case 'standard':
-                packagePrice = 5000000;
-                break;
-            case 'premium':
-                packagePrice = 10000000;
-                break;
-            default:
-                packagePrice = 2500000;
+        // Validasi form
+        if (validateForm()) {
+            // Jika valid, kirim ke WhatsApp
+            sendToWhatsApp();
         }
-        
-        // Calculate DP amount
-        const dpPercentage = parseInt(formData.dp_amount);
-        const dpAmount = Math.round(packagePrice * (dpPercentage / 100));
-        
-        // Prepare transaction details for Midtrans
-        const transactionDetails = {
-            transaction_details: {
-                order_id: 'WEB-' + new Date().getTime(),
-                gross_amount: dpAmount
-            },
-            customer_details: {
-                first_name: formData.nama.split(' ')[0],
-                last_name: formData.nama.split(' ').slice(1).join(' '),
-                email: formData.email,
-                phone: formData.telepon,
-                billing_address: {
-                    address: formData.alamat
-                }
-            },
-            item_details: [
-                {
-                    id: formData.paket,
-                    price: dpAmount,
-                    quantity: 1,
-                    name: 'DP Pembuatan Website Paket ' + formData.paket.charAt(0).toUpperCase() + formData.paket.slice(1) + ' (' + dpPercentage + '%)'
-                }
-            ],
-            payment_type: formData.payment_method === 'credit_card' ? 'credit_card' : 
-                         formData.payment_method === 'gopay' ? 'gopay' :
-                         formData.payment_method === 'shopeepay' ? 'shopeepay' : 'bank_transfer'
-        };
-        
-        // Save form data to localStorage (for demo purposes)
-        localStorage.setItem('webOrderData', JSON.stringify(formData));
-        
-        // Call Midtrans Snap API
-        snap.pay(transactionDetails, {
-            onSuccess: function(result) {
-                console.log('Payment success:', result);
-                alert('Pembayaran berhasil! Kami akan segera menghubungi Anda untuk proses selanjutnya.');
-                // You can redirect to thank you page or clear form here
-            },
-            onPending: function(result) {
-                console.log('Payment pending:', result);
-                alert('Pembayaran Anda sedang diproses. Silakan selesaikan pembayaran sesuai instruksi.');
-            },
-            onError: function(result) {
-                console.log('Payment error:', result);
-                alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.');
-            },
-            onClose: function() {
-                console.log('Payment popup closed');
-                // Handle when customer close the popup without finishing the payment
-            }
-        });
     });
     
-    // Dynamic price calculation (optional)
-    const packageRadios = document.querySelectorAll('input[name="paket"]');
-    const dpSelect = document.getElementById('dp_amount');
+    closeModalBtn.addEventListener('click', function() {
+        successModal.style.display = 'none';
+    });
     
-    function updateDPOptions() {
-        const selectedPackage = document.querySelector('input[name="paket"]:checked').value;
-        let packagePrice;
+    function validateForm() {
+        let isValid = true;
         
-        switch(selectedPackage) {
-            case 'basic':
-                packagePrice = 2500000;
-                break;
-            case 'standard':
-                packagePrice = 5000000;
-                break;
-            case 'premium':
-                packagePrice = 10000000;
-                break;
+        // Validasi Nama
+        const name = document.getElementById('name').value.trim();
+        if (name.length < 3) {
+            showError('name-error', 'Nama minimal 3 karakter');
+            isValid = false;
         }
         
-        // You can update UI to show the calculated DP amount here
-        console.log('Selected package:', selectedPackage, 'Price:', packagePrice);
+        // Validasi Email
+        const email = document.getElementById('email').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showError('email-error', 'Email tidak valid');
+            isValid = false;
+        }
+        
+        // Validasi Nomor WhatsApp
+        const phone = document.getElementById('phone').value.trim();
+        const phoneRegex = /^(\+62|62|0)[1-9][0-9]{6,12}$/;
+        if (!phoneRegex.test(phone)) {
+            showError('phone-error', 'Format WhatsApp tidak valid (gunakan 08...)');
+            isValid = false;
+        }
+        
+        // Validasi Jenis Website
+        const websiteType = document.getElementById('website-type').value;
+        if (!websiteType) {
+            showError('website-type-error', 'Pilih jenis website');
+            isValid = false;
+        }
+        
+        // Validasi Paket
+        const package = document.getElementById('package').value;
+        if (!package) {
+            showError('package-error', 'Pilih paket');
+            isValid = false;
+        }
+        
+        // Validasi Domain
+        const domain = document.getElementById('domain').value.trim();
+        const domainRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
+        if (!domainRegex.test(domain)) {
+            showError('domain-error', 'Format domain tidak valid (contoh: bisnisku.com)');
+            isValid = false;
+        }
+        
+        return isValid;
     }
     
-    packageRadios.forEach(radio => {
-        radio.addEventListener('change', updateDPOptions);
-    });
+    function showError(elementId, message) {
+        const element = document.getElementById(elementId);
+        element.textContent = message;
+        element.style.display = 'block';
+    }
     
-    dpSelect.addEventListener('change', updateDPOptions);
+    function clearErrors() {
+        const errorMessages = document.querySelectorAll('.error-message');
+        errorMessages.forEach(el => {
+            el.textContent = '';
+            el.style.display = 'none';
+        });
+    }
+    function sendToWhatsApp() {
+    const formData = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        websiteType: document.getElementById('website-type').value,
+        package: document.getElementById('package').value,
+        domain: document.getElementById('domain').value.trim(),
+        notes: document.getElementById('notes').value.trim()
+    };
     
-    // Initialize
-    updateDPOptions();
+    // Format nomor customer
+    let customerWA = formData.phone.replace(/^\+62|^0/, '62').replace(/\D/g, '');
+    
+    // Nomor admin (ganti dengan nomor Anda)
+    const adminWA = '6283824225539'; // Contoh nomor admin
+    
+    // Pesan untuk admin
+    const adminMessage = `🚀 ORDER BARU!
+Nama: ${formData.name}
+Email: ${formData.email}
+No. WA: https://wa.me/${customerWA}
+Jenis Website: ${formData.websiteType}
+Paket: ${formData.package}
+Domain: ${formData.domain}
+Catatan: ${formData.notes || '-'}`;
+
+    // Pesan untuk customer
+    const customerMessage = `Halo ${formData.name},
+Terima kasih telah memesan website!
+
+📌 Detail Order:
+Jenis: ${formData.websiteType}
+Paket: ${formData.package}
+Domain: ${formData.domain}
+
+Kami akan segera menghubungi Anda via WhatsApp.`;
+
+    // Kirim ke admin (CC)
+    window.open(`https://wa.me/${adminWA}?text=${encodeURIComponent(adminMessage)}`, '_blank');
+    
+    // Kirim ke customer
+    window.open(`https://wa.me/${customerWA}?text=${encodeURIComponent(customerMessage)}`, '_blank');
+
+    // Tampilkan modal sukses
+    successModal.style.display = 'flex';
+    
+    // Reset form
+    setTimeout(() => {
+        orderForm.reset();
+        successModal.style.display = 'none';
+    }, 3000);
+    }
+
 });
