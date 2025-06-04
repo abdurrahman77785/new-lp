@@ -351,8 +351,8 @@ nav {
 
 .popular-tag {
     position: absolute;
-    top: 0;
-    right: 20px;
+    top: 10PX;
+    right: 10px;
     background: var(--primary-color);
     color: var(--white-color);
     padding: 5px 15px;

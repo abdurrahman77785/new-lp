@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoJaya - Dealer Mobil Terpercaya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Auto<span>Jaya</span></h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#inventory">Inventori</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Temukan Mobil Impian Anda</h2>
+            <p>Lebih dari 100+ mobil berkualitas siap menemani perjalanan Anda</p>
+            <a href="#inventory" class="btn">Lihat Inventori</a>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="container">
+            <form id="searchForm">
+                <div class="form-group">
+                    <select id="brand">
+                        <option value="">Semua Merek</option>
+                        <option value="Toyota">Toyota</option>
+                        <option value="Honda">Honda</option>
+                        <option value="Suzuki">Suzuki</option>
+                        <option value="Mitsubishi">Mitsubishi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="type">
+                        <option value="">Semua Tipe</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="MPV">MPV</option>
+                        <option value="Hatchback">Hatchback</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="price">
+                        <option value="">Semua Harga</option>
+                        <option value="1">Dibawah 200jt</option>
+                        <option value="2">200jt - 400jt</option>
+                        <option value="3">400jt - 600jt</option>
+                        <option value="4">Diatas 600jt</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Cari Mobil</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="inventory" id="inventory">
+        <div class="container">
+            <h2 class="section-title">Inventori Mobil</h2>
+            <div class="cars-grid" id="carsContainer">
+                <!-- Mobil akan dimuat secara dinamis dari JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Tentang Kami</h2>
+                <p>AutoJaya adalah dealer mobil terpercaya yang telah beroperasi sejak 2005. Kami menyediakan berbagai macam mobil baru dan bekas berkualitas dengan harga kompetitif.</p>
+                <p>Tim profesional kami siap membantu Anda menemukan mobil yang sesuai dengan kebutuhan dan budget Anda.</p>
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Garansi resmi</li>
+                    <li><i class="fas fa-check-circle"></i> Pembiayaan mudah</li>
+                    <li><i class="fas fa-check-circle"></i> Layanan purna jual</li>
+                    <li><i class="fas fa-check-circle"></i> Tukar tambah mobil lama</li>
+                </ul>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Showroom AutoJaya">
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Raya Mobil No. 123, Jakarta</p>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> info@autojaya.com</p>
+                    <p><i class="fas fa-clock"></i> Buka Setiap Hari: 09.00 - 17.00</p>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Nomor Telepon">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Pesan Anda" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AutoJaya</h3>
+                    <p>Dealer mobil terpercaya dengan layanan terbaik untuk kebutuhan kendaraan Anda.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Menu Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#inventory">Inventori</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Sosial Media</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 AutoJaya. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
