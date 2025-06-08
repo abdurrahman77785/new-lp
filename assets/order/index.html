@@ -1,100 +1,41 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemesanan Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pemesanan Website</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-code"></i> Pemesanan Website Profesional</h1>
-            <p>Isi form berikut dan kami akan menghubungi via WhatsApp</p>
-        </div>
-        
-        <form id="order-form" class="order-form">
-            <div class="form-group">
-                <label for="name">Nama Lengkap*</label>
-                <input type="text" id="name" name="name" required>
-                <div class="error-message" id="name-error"></div>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email*</label>
-                <input type="email" id="email" name="email" required>
-                <div class="error-message" id="email-error"></div>
-            </div>
-            
-            <div class="form-group">
-                <label for="phone">Nomor WhatsApp*</label>
-                <input type="tel" id="phone" name="phone" required>
-                <div class="error-message" id="phone-error"></div>
-            </div>
-            
-            <div class="form-group">
-                <label for="website-type">Jenis Website*</label>
-                <select id="website-type" name="website-type" required>
-                    <option value="">-- Pilih Jenis Website --</option>
-                    <option value="company-profile">Company Profile</option>
-                    <option value="ecommerce">Toko Online</option>
-                    <option value="blog">Landing page</option>
-                    <option value="portfolio">Portfolio</option>
-                    <option value="custom">Custom Website</option>
-                </select>
-                <div class="error-message" id="website-type-error"></div>
-            </div>
-            
-            <div class="form-group">
-                <label for="package">Paket*</label>
-                <select id="package" name="package" required>
-                    <option value="">-- Pilih Paket --</option>
-                    <option value="basic">Basic - Rp 650.000</option>
-                    <option value="standard">Standard - Rp 950.000</option>
-                    <option value="premium">Premium - Rp 1.500.000</option>
-                </select>
-                <div class="error-message" id="package-error"></div>
-            </div>
-            
-            <div class="form-group">
-                <label for="domain">Domain yang diinginkan (contoh: bisnisku.com)*</label>
-                <input type="text" id="domain" name="domain" required>
-                <div class="error-message" id="domain-error"></div>
-            </div>
-            
-            <div class="form-group">
-                <label for="notes">Catatan Tambahan</label>
-                <textarea id="notes" name="notes" rows="4"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="coupon">Kode Kupon (Jika Ada)</label>
-                <input type="text" id="coupon" name="coupon" placeholder="Masukkan kode diskon">
-                <div class="error-message" id="coupon-error"></div>
-                <div id="coupon-success" class="coupon-success" style="display: none;">
-                    Kupon diterima! Diskon: <span id="discount-value">0</span>
-                </div>
-</div>
-            <button type="submit" class="btn-submit">
-                <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
-            </button>
-            <input type="hidden" id="admin-wa" value="6283824225539">
-        </form>
-    </div>
-    
-    <!-- Modal Sukses -->
-    <div id="success-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-icon success">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h2>Permintaan Terkirim!</h2>
-            <p>Kami akan segera menghubungi Anda via WhatsApp.</p>
-            <button id="close-success-modal" class="btn-modal">Tutup</button>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+  <div class="container">
+    <h1>Pemesanan Website Profesional</h1>
+    <form id="order-form">
+      <input type="text" id="name" placeholder="Nama Lengkap" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="tel" id="phone" placeholder="Nomor WhatsApp" required>
+      <select id="website-type" required>
+        <option value="">Pilih Jenis Website</option>
+        <option value="Company Profile">Company Profile</option>
+        <option value="E-commerce">Toko Online</option>
+        <option value="Landing Page">Landing Page</option>
+        <option value="Portfolio">Portfolio</option>
+        <option value="Custom">Custom Website</option>
+      </select>
+      <select id="package" required>
+        <option value="">Pilih Paket</option>
+        <option value="Basic - Rp 650.000">Basic - Rp 650.000</option>
+        <option value="Standard - Rp 950.000">Standard - Rp 950.000</option>
+        <option value="Premium - Rp 1.500.000">Premium - Rp 1.500.000</option>
+      </select>
+      <input type="text" id="domain" placeholder="Domain (contoh: bisnisku.com)" required>
+      <textarea id="notes" placeholder="Catatan tambahan (opsional)"></textarea>
+      <input type="text" id="coupon" placeholder="Kode Kupon (jika ada)">
+      <input type="hidden" id="admin-wa" value="6283824225539">
+      <button type="submit">Kirim via WhatsApp</button>
+    </form>
+
+    <div id="success-message" style="display: none;">✅ Data berhasil dikirim!</div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
