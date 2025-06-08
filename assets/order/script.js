@@ -25,7 +25,7 @@ Kode Kupon: ${coupon || '-'}`;
   window.open(`https://wa.me/${adminNumber}?text=${message}`, "_blank");
 
   // Kirim ke Spreadsheet
-  fetch("https://script.google.com/macros/s/AKfycbz_k6eutDcFpVZZZcWbiD9PmdMh50SLmAnfXRIKQUDd0A-J_duq4lEJYddT-7KV5q8I/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbyMgEwKtBPOCsXYFOxjG33UkvErGkAlgYETjCvQSSMrFBJLDPT69NS7QudT3qQvnnKK/exec", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
