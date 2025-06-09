@@ -1,41 +1,90 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pemesanan Website</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
     <h1>Pemesanan Website Profesional</h1>
+
     <form id="order-form">
-      <input type="text" id="name" placeholder="Nama Lengkap" required>
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="tel" id="phone" placeholder="Nomor WhatsApp" required>
-      <select id="website-type" required>
-        <option value="">Pilih Jenis Website</option>
+      <input type="text" id="name" name="name" placeholder="Nama Lengkap" required />
+      <input type="email" id="email" name="email" placeholder="Email" required />
+      <input type="tel" id="phone" name="phone" placeholder="Nomor WhatsApp" required />
+
+      <label for="website-type">Jenis Website</label>
+      <select id="website-type" name="websiteType" required>
+        <option value="" disabled selected>Pilih Jenis Website</option>
         <option value="Company Profile">Company Profile</option>
         <option value="E-commerce">Toko Online</option>
         <option value="Landing Page">Landing Page</option>
         <option value="Portfolio">Portfolio</option>
         <option value="Custom">Custom Website</option>
       </select>
-      <select id="package" required>
-        <option value="">Pilih Paket</option>
-        <option value="Basic - Rp 650.000">Basic - Rp 650.000</option>
-        <option value="Standard - Rp 950.000">Standard - Rp 950.000</option>
-        <option value="Premium - Rp 1.500.000">Premium - Rp 1.500.000</option>
-      </select>
-      <input type="text" id="domain" placeholder="Domain (contoh: bisnisku.com)" required>
-      <textarea id="notes" placeholder="Catatan tambahan (opsional)"></textarea>
-      <input type="text" id="coupon" placeholder="Kode Kupon (jika ada)">
-      <input type="hidden" id="admin-wa" value="6283824225539">
-      <button type="submit">Kirim via WhatsApp</button>
+
+      <input type="text" id="domain" name="domain" placeholder="Domain (contoh: bisnisku.com)" required />
+      <textarea id="notes" name="notes" placeholder="Catatan tambahan (opsional)"></textarea>
+
+      <div class="form-group">
+        <label for="package">Paket*</label>
+        <div class="price-options">
+          <div class="price-option">
+            <input type="radio" name="package" id="basic" value="Basic - Rp 499.000" required>
+            <label for="basic">
+              <span class="label-title">Basic</span>
+              <div class="label-pricing">
+                <span class="price-old">Rp 850.000</span>
+                <span class="price-discount">Diskon 40%</span>
+                <span class="price-now">Rp 499.000</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="price-option">
+            <input type="radio" name="package" id="standar" value="Standar - Rp 899.000" required>
+            <label for="standar">
+              <span class="label-title">Standar</span>
+              <div class="label-pricing">
+                <span class="price-old">Rp 1.500.000</span>
+                <span class="price-discount">Diskon 40%</span>
+                <span class="price-now">Rp 899.000</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="price-option">
+            <input type="radio" name="package" id="premium" value="premium - Rp 1.799.000" required>
+            <label for="premium">
+              <span class="label-title">Premium</span>
+              <div class="label-pricing">
+                <span class="price-old">Rp 3.000.000</span>
+                <span class="price-discount">Diskon 40%</span>
+                <span class="price-now">Rp 1.799.000</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- Opsi Standard dan Premium serupa -->
+        </div>
+      </div>
+
+      <input type="hidden" id="admin-wa" value="6283824225539" />
+
+      <button type="submit" id="submit-btn">
+        <span class="btn-text">Kirim via WhatsApp</span>
+        <span class="loading-spinner" style="display: none;">⌛</span>
+      </button>
     </form>
 
-    <div id="success-message" style="display: none;">✅ Data berhasil dikirim!</div>
+    <div id="success-message" style="display: none;">
+      <div class="success-icon">✓</div>
+      <p>Data berhasil dikirim!</p>
+    </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>

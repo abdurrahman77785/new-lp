@@ -237,33 +237,40 @@ document.addEventListener('DOMContentLoaded', function() {
             retina_detect: true
         });
     }
-    
-    // Sticky header on scroll
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('nav');
-        header.classList.toggle('sticky', window.scrollY > 50);
-    });
-    
-    // Track CTA clicks
-    document.querySelectorAll('.cta-button').forEach(button => {
-        button.addEventListener('click', function() {
-            // Track in Google Analytics
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'click', {
-                    'event_category': 'CTA',
-                    'event_label': this.textContent.trim()
-                });
-            }
-            
-            // Track in Facebook Pixel
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Lead');
-            }
-            
-            // Track in TikTok Pixel
-            if (typeof ttq !== 'undefined') {
-                ttq.track('CompleteRegistration');
-            }
-        });
-    });    
+// Set waktu awal, misalnya 2 jam (bisa diganti sesuai kebutuhan)
+const startingTimeInSeconds = 2 * 60 * 60; // 2 jam
+
+let time = startingTimeInSeconds;
+
+function updateFakeCountdown() {
+  let remaining = time;
+
+  const days = Math.floor(remaining / (60 * 60 * 24));
+  remaining %= (60 * 60 * 24);
+
+  const hours = Math.floor(remaining / (60 * 60));
+  remaining %= (60 * 60);
+
+  const minutes = Math.floor(remaining / 60);
+  const seconds = remaining % 60;
+
+  document.getElementById('days').textContent = days.toString().padStart(2, '0');
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+  time--;
+
+  // Reset setelah habis (loop terus)
+  if (time < 0) {
+    time = startingTimeInSeconds;
+  }
+}
+
+// Jalankan countdown setiap detik
+setInterval(updateFakeCountdown, 1000);
+updateFakeCountdown();
+
+
+   
 });

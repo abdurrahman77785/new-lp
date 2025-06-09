@@ -727,6 +727,7 @@ nav {
     margin-bottom: 20px;
     position: relative;
     padding-bottom: 10px;
+    padding-left: 10px;
 }
 
 .footer-section.links h3:after,
@@ -742,6 +743,7 @@ nav {
 
 .footer-section.links li {
     margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .footer-section.links a {
@@ -758,6 +760,7 @@ nav {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
+    padding-left: 10px;
 }
 
 .footer-section.contact i {
@@ -809,15 +812,16 @@ nav {
         left: -100%;
         width: 100%;
         height: calc(100vh - 80px);
-        background: var(--dark-color);
+        background: #111;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         transition: var(--transition);
+        z-index: 9999;
     }
     
     .nav-links.active {
-        left: 0;
+        left: 0
     }
     
     .nav-links li {
@@ -919,6 +923,88 @@ nav {
   padding: 4px 8px;
   border-radius: 12px;
   white-space: nowrap; /* Pastikan teks tetap 1 baris */
+}
+
+/* Countdown Styles */
+.countdown-container {
+  background: linear-gradient(135deg, #25d366, #128C7E);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin: 30px 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.countdown-container h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.countdown-number {
+  font-size: 2rem;
+  font-weight: 700;
+  background: rgba(255,255,255,0.2);
+  padding: 10px 15px;
+  border-radius: 8px;
+  min-width: 50px;
+  display: inline-block;
+  text-align: center;
+}
+
+.countdown-label {
+  font-size: 0.8rem;
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.countdown-separator {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 5px;
+  align-self: flex-end;
+  padding-bottom: 10px;
+}
+
+.countdown-note {
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .countdown-number {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+  }
+  
+  .countdown-label {
+    font-size: 0.7rem;
+  }
+  
+  .countdown-separator {
+    font-size: 1.2rem;
+    padding-bottom: 8px;
+  }
 }
 
 

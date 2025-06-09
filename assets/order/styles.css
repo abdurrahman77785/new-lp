@@ -1,44 +1,219 @@
+/* Reset dan dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #f3f3f3;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f5f7fa;
+  margin: 0;
   padding: 20px;
+  line-height: 1.6;
+  color: #333;
 }
 
 .container {
-  max-width: 500px;
-  margin: auto;
+  max-width: 600px;
+  width: 95%;
+  margin: 30px auto;
   background: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ccc;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-size: 28px;
 }
 
+/* Form elements */
 form input,
 form select,
 form textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border 0.3s;
 }
 
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #25d366;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.2);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* Button styles */
 button {
-  background: #25d366;
+  background-color: #25d366;
   color: white;
   border: none;
-  padding: 12px;
-  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
   font-size: 16px;
-  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 button:hover {
-  background: #1da851;
+  background-color: #1da851;
+  transform: translateY(-2px);
+}
+
+/* Price options */
+.price-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.price-option {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.price-option:hover {
+  border-color: #25d366;
+}
+
+.price-option input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  margin-right: 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.price-option input[type="radio"]:checked {
+  border-color: #25d366;
+}
+
+.price-option input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #25d366;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.price-option label {
+  flex: 1;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.label-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #2c3e50;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.label-pricing {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.price-old {
+  text-decoration: line-through;
+  color: #e74c3c;
+  font-size: 14px;
+}
+
+.price-discount {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.price-now {
+  color: #27ae60;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Success message */
+#success-message {
+  text-align: center;
+  padding: 20px;
+  background: #e8f5e9;
+  border-radius: 8px;
+  margin-top: 20px;
+  display: none;
+}
+
+.success-icon {
+  font-size: 40px;
+  color: #27ae60;
+  margin-bottom: 10px;
+}
+
+/* Loading state */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  .label-pricing {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
 }
