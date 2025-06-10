@@ -50,7 +50,7 @@ document.getElementById("order-form").addEventListener("submit", async function 
     window.open(`https://wa.me/${adminNumber}?text=${message}`, "_blank");
     
     // Kirim ke Google Sheets
-    const response = await fetch("https://script.google.com/macros/s/AKfycbz_k6eutDcFpVZZZcWbiD9PmdMh50SLmAnfXRIKQUDd0A-J_duq4lEJYddT-7KV5q8I/exec", {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbxV0pE0PCl_piF4xwtOA4_CO4Zyee3pXyWq7VL-BsUQrH2rgnzG4yFEj4HS44KrLAo5/exec", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(orderData),
