@@ -11,67 +11,53 @@ document.getElementById("order-form").addEventListener("submit", async function 
   submitBtn.disabled = true;
 
   try {
-    // Ambil nilai form
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const websiteType = document.getElementById("website-type").value;
-    const domain = document.getElementById("domain").value;
-    const notes = document.getElementById("notes").value;
-    const adminNumber = document.getElementById("admin-wa").value;
+    // Ambil nilai dari input form
+    const name = document.getElementById("name")?.value.trim();
+    const email = document.getElementById("email")?.value.trim();
+    const phone = document.getElementById("phone")?.value.trim();
+    const websiteType = document.getElementById("website-type")?.value.trim();
+    const domain = document.getElementById("domain")?.value.trim();
+    const notes = document.getElementById("notes")?.value.trim();
+    const adminNumber = document.getElementById("admin-wa")?.value.trim();
 
-    // Ambil paket yang dipilih
-    const package = document.querySelector('input[name="package"]:checked')?.value || 'Belum dipilih';
+    const selectedPackage = document.querySelector('input[name="package"]:checked')?.value || 'Belum dipilih';
 
-    // Simpan data ke localStorage untuk halaman thank-you
+    // Validasi sederhana (opsional)
+    if (!name || !phone || !adminNumber) {
+      alert("Nama, nomor WA, dan admin WA wajib diisi.");
+      throw new Error("Field wajib tidak diisi");
+    }
+
+    // Simpan data ke localStorage
     const orderData = {
       name,
       email,
       phone,
       website_type: websiteType,
-      package,
+      package: selectedPackage,
       domain,
       notes,
       date: new Date().toISOString()
     };
     localStorage.setItem('lastOrder', JSON.stringify(orderData));
 
-    // Buat pesan WhatsApp
-    const message = `*Pemesanan Website Baru*%0A` +
+    // Format pesan WhatsApp
+    const message = 
+      `*Pemesanan Website Baru*%0A` +
       `Nama: ${name}%0A` +
       `Email: ${email}%0A` +
       `No. WA: ${phone}%0A` +
       `Jenis Website: ${websiteType}%0A` +
-      `Paket: ${package}%0A` +
+      `Paket: ${selectedPackage}%0A` +
       `Domain: ${domain}%0A` +
       `Catatan: ${notes || '-'}`;
 
     // Kirim ke WhatsApp
-    window.open(`https://wa.me/${adminNumber}?text=${message}`, "_blank");
-
-    // Kirim ke PHP (yang teruskan ke Google Apps Script)
-    const response = await fetch("https://www.rahmanweb.my.id/send-order.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(orderData),
-    });
-
-    if (response.ok) {
-      // Tampilkan pesan sukses
-      document.getElementById("success-message").style.display = "block";
-      document.getElementById("order-form").reset();
-
-      // Redirect ke halaman thank-you setelah 2 detik
-      setTimeout(() => {
-        window.location.href = "thank-you.html";
-      }, 2000);
-    } else {
-      throw new Error("Gagal mengirim data ke server.");
-    }
+    window.open(`https://wa.me/${adminNumber}?text=${encodeURIComponent(message)}`, "_blank");
 
   } catch (error) {
-    console.error("Error:", error);
-    alert("Terjadi kesalahan: " + error.message);
+    console.error("Terjadi kesalahan:", error.message);
+    alert("Terjadi kesalahan saat mengirim data. Silakan coba lagi.");
   } finally {
     // Reset tombol
     btnText.textContent = "Kirim via WhatsApp";

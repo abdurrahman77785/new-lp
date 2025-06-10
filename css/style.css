@@ -707,6 +707,8 @@ nav {
 }
 
 .footer-section.about .misi-list li {
+    padding-left: 10px;
+    padding-right: 10px;
   color: white;
   font-size: 16px;
   line-height: 1.6;
