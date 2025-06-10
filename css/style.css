@@ -377,14 +377,26 @@ nav {
 }
 
 .price {
-    font-size: 40px;
+    text-decoration: line-through;
+    font-size: 35px;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
-.price span {
-    font-size: 16px;
-    font-weight: 400;
+.price-new {
+    
+    font-size: 45px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+
+.price-disc{
+   background: red;
+            padding: 3px 8px;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
 }
 
 .pricing-features {

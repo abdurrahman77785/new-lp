@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 // Set waktu awal, misalnya 2 jam (bisa diganti sesuai kebutuhan)
-const startingTimeInSeconds = 2 * 60 * 60; // 2 jam
+const startingTimeInSeconds =  6 * 60 * 60; // 2 jam
 
 let time = startingTimeInSeconds;
 
