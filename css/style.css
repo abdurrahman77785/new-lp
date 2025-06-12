@@ -817,29 +817,39 @@ nav {
 
 @media (max-width: 768px) {
     .burger {
-        display: block;
+        display: none;
     }
     
     .nav-links {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: #111;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-        z-index: 9999;
+         border-radius: 10%;
+     position: fixed;
+    top: 80px; /* Sesuaikan dengan tinggi header */
+    left: -100%;
+    width: 10px; /* Lebar menu sidebar */
+    height: fit-content; /* Ganti dari full height ke auto */
+    max-height: calc(100vh - 100px); /* Batasi tinggi maksimum */
+    background:  rgba(0,0,0,0.5);
+    flex-direction: column;
+    align-items: flex-start; /* Rata kiri */
+    padding: 20px;
+    transition: var(--transition);
+    z-index: 9999;
+    overflow-y: auto; /* Scroll jika konten panjang */
+   
     }
     
+
+    
     .nav-links.active {
-        left: 0
+    top: 80px;
+    left: 0; /* Muncul dari kiri */
+    width: 40%;
+
     }
     
     .nav-links li {
-        margin: 15px 0;
+        margin: 15px ;
+      
     }
     
     .hero {
